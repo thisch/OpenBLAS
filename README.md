@@ -30,8 +30,6 @@ You can download them from [file hosting on sourceforge.net](https://sourceforge
 Download from project homepage, https://xianyi.github.com/OpenBLAS/, or check out the code
 using Git from https://github.com/xianyi/OpenBLAS.git. (If you want the most up to date version, be
 sure to use the develop branch - master is several years out of date due to a change of maintainership.)
-Buildtime parameters can be chosen in Makefile.rule, see there for a short description of each option.
-Most can also be given directly on the make or cmake command line.
 
 ### Dependencies
 
@@ -42,6 +40,27 @@ Building OpenBLAS requires the following to be installed:
 * A C compiler, e.g. GCC or Clang
 * A Fortran compiler (optional, for LAPACK)
 * IBM MASS (optional, see below)
+
+### Build options
+
+There is a list of build-time parameters with a short description of each
+option in `Makefile.rule` .
+
+Most options can be specified directly on the command line using
+
+```sh
+make BUILD_OPTION=VALUE
+```
+or
+
+```sh
+cmake -DBUILD_OPTION=VALUE
+```
+
+TODO In the case of cmake what about the others that can not be specified on
+the command line? Does cmake parse Makefile.rule?
+
+TODO Should we  highlight the most important build options here?
 
 ### Normal compile
 
@@ -175,7 +194,7 @@ Please read `GotoBLAS_01Readme.txt` for older CPU models already supported by th
 
 ### Support for multiple targets in a single library
 
-OpenBLAS can be built for multiple targets with runtime detection of the target cpu by specifiying `DYNAMIC_ARCH=1` in Makefile.rule, on the gmake command line or as `-DDYNAMIC_ARCH=TRUE` in cmake.
+OpenBLAS can be built for multiple targets with runtime detection of the target cpu by setting `DYNAMIC_ARCH=1`.
 
 For **x86_64**, the list of targets this activates contains Prescott, Core2, Nehalem, Barcelona, Sandybridge, Bulldozer, Piledriver, Steamroller, Excavator, Haswell, Zen, SkylakeX. For cpu generations not included in this list, the corresponding older model is used. If you also specify `DYNAMIC_OLDER=1`, specific support for Penryn, Dunnington, Opteron, Opteron/SSE3, Bobcat, Atom and Nano is added. Finally there is an option `DYNAMIC_LIST` that allows to specify an individual list of targets to include instead of the default.
 
