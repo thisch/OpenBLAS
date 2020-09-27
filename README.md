@@ -37,6 +37,7 @@ Most can also be given directly on the make or cmake command line.
 
 Building OpenBLAS requires the following to be installed:
 
+* cmake (optional)
 * GNU Make
 * A C compiler, e.g. GCC or Clang
 * A Fortran compiler (optional, for LAPACK)
